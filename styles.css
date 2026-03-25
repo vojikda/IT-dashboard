@@ -233,10 +233,14 @@ body {
 }
 
 .split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  align-items: start;
+}
+
+.sectionDivider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
 .card {
@@ -689,9 +693,6 @@ body {
     grid-template-columns: 1fr;
   }
   .grid--rows {
-    grid-template-columns: 1fr;
-  }
-  .split {
     grid-template-columns: 1fr;
   }
   .slaGrid {
