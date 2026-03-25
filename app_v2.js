@@ -9,40 +9,40 @@ const domains = [
           slaFulfillment: 99.6,
           costsLastYearMil: 48.2,
           budgetCurrentYearMil: 52.0,
-          extraBudgetMil: 3.1,
-          forecastTotalMil: 55.1,
+          deltaFromProjectsMil: 2.0,
+          otherChangesSavingsMil: 1.1,
         },
         {
           name: "Aplikace 2",
           slaFulfillment: 98.9,
           costsLastYearMil: 31.7,
           budgetCurrentYearMil: 34.0,
-          extraBudgetMil: 2.4,
-          forecastTotalMil: 36.4,
+          deltaFromProjectsMil: 1.6,
+          otherChangesSavingsMil: 0.8,
         },
         {
           name: "Aplikace 3",
           slaFulfillment: 99.1,
           costsLastYearMil: 24.5,
           budgetCurrentYearMil: 26.0,
-          extraBudgetMil: 0.8,
-          forecastTotalMil: 26.8,
+          deltaFromProjectsMil: 0.5,
+          otherChangesSavingsMil: 0.3,
         },
         {
           name: "Aplikace 4",
           slaFulfillment: 97.8,
           costsLastYearMil: 18.9,
           budgetCurrentYearMil: 20.0,
-          extraBudgetMil: 3.7,
-          forecastTotalMil: 23.7,
+          deltaFromProjectsMil: 2.4,
+          otherChangesSavingsMil: 1.3,
         },
         {
           name: "Aplikace 5",
           slaFulfillment: 99.3,
           costsLastYearMil: 39.1,
           budgetCurrentYearMil: 41.5,
-          extraBudgetMil: 1.2,
-          forecastTotalMil: 42.7,
+          deltaFromProjectsMil: 0.8,
+          otherChangesSavingsMil: 0.4,
         },
       ],
     },
@@ -121,40 +121,40 @@ const domains = [
           slaFulfillment: 99.2,
           costsLastYearMil: 62.4,
           budgetCurrentYearMil: 66.0,
-          extraBudgetMil: 1.6,
-          forecastTotalMil: 67.6,
+          deltaFromProjectsMil: 1.0,
+          otherChangesSavingsMil: 0.6,
         },
         {
           name: "Aplikace 2",
           slaFulfillment: 98.1,
           costsLastYearMil: 27.8,
           budgetCurrentYearMil: 30.0,
-          extraBudgetMil: 4.9,
-          forecastTotalMil: 34.9,
+          deltaFromProjectsMil: 3.2,
+          otherChangesSavingsMil: 1.7,
         },
         {
           name: "Aplikace 3",
           slaFulfillment: 99.5,
           costsLastYearMil: 19.6,
           budgetCurrentYearMil: 21.0,
-          extraBudgetMil: 0.3,
-          forecastTotalMil: 21.3,
+          deltaFromProjectsMil: 0.2,
+          otherChangesSavingsMil: 0.1,
         },
         {
           name: "Aplikace 4",
           slaFulfillment: 97.9,
           costsLastYearMil: 14.2,
           budgetCurrentYearMil: 16.0,
-          extraBudgetMil: 2.2,
-          forecastTotalMil: 18.2,
+          deltaFromProjectsMil: 1.4,
+          otherChangesSavingsMil: 0.8,
         },
         {
           name: "Aplikace 5",
           slaFulfillment: 99.0,
           costsLastYearMil: 44.9,
           budgetCurrentYearMil: 48.5,
-          extraBudgetMil: 2.0,
-          forecastTotalMil: 50.5,
+          deltaFromProjectsMil: 1.3,
+          otherChangesSavingsMil: 0.7,
         },
       ],
     },
@@ -233,40 +233,40 @@ const domains = [
           slaFulfillment: 99.7,
           costsLastYearMil: 38.3,
           budgetCurrentYearMil: 40.0,
-          extraBudgetMil: 0.6,
-          forecastTotalMil: 40.6,
+          deltaFromProjectsMil: 0.4,
+          otherChangesSavingsMil: 0.2,
         },
         {
           name: "Aplikace 2",
           slaFulfillment: 98.7,
           costsLastYearMil: 29.5,
           budgetCurrentYearMil: 31.0,
-          extraBudgetMil: 2.3,
-          forecastTotalMil: 33.3,
+          deltaFromProjectsMil: 1.5,
+          otherChangesSavingsMil: 0.8,
         },
         {
           name: "Aplikace 3",
           slaFulfillment: 99.3,
           costsLastYearMil: 22.1,
           budgetCurrentYearMil: 24.0,
-          extraBudgetMil: 0.8,
-          forecastTotalMil: 24.8,
+          deltaFromProjectsMil: 0.5,
+          otherChangesSavingsMil: 0.3,
         },
         {
           name: "Aplikace 4",
           slaFulfillment: 97.6,
           costsLastYearMil: 12.9,
           budgetCurrentYearMil: 14.0,
-          extraBudgetMil: 3.1,
-          forecastTotalMil: 17.1,
+          deltaFromProjectsMil: 2.0,
+          otherChangesSavingsMil: 1.1,
         },
         {
           name: "Aplikace 5",
           slaFulfillment: 99.1,
           costsLastYearMil: 41.0,
           budgetCurrentYearMil: 44.0,
-          extraBudgetMil: 1.9,
-          forecastTotalMil: 45.9,
+          deltaFromProjectsMil: 1.2,
+          otherChangesSavingsMil: 0.7,
         },
       ],
     },
@@ -337,6 +337,10 @@ const domains = [
   },
 ];
 
+function round1(value) {
+  return Math.round(value * 10) / 10;
+}
+
 function applyTheme(theme) {
   document.documentElement.classList.toggle("theme-dark", theme === "dark");
 }
@@ -384,10 +388,10 @@ function renderApps(tbody, apps) {
   tbody.innerHTML = "";
   for (const app of apps) {
     const slaPill = renderPill(formatPercent(app.slaFulfillment, 1), toneFromSla(app.slaFulfillment));
-    const changesVsPlanMil = app.extraBudgetMil;
-    // Derived dummy breakdown for the prototype visualization.
-    const deltaFromProjectsMil = changesVsPlanMil * 0.65;
-    const otherChangesSavingsMil = changesVsPlanMil - deltaFromProjectsMil;
+    const deltaFromProjectsMil = round1(app.deltaFromProjectsMil);
+    const otherChangesSavingsMil = round1(app.otherChangesSavingsMil);
+    const changesVsPlanMil = round1(deltaFromProjectsMil + otherChangesSavingsMil);
+    const forecastTotalMil = round1(app.budgetCurrentYearMil + changesVsPlanMil);
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -398,7 +402,7 @@ function renderApps(tbody, apps) {
       <td>${formatMilKc(changesVsPlanMil)}</td>
       <td>${formatMilKc(deltaFromProjectsMil)}</td>
       <td>${formatMilKc(otherChangesSavingsMil)}</td>
-      <td><strong>${formatMilKc(app.forecastTotalMil)}</strong></td>
+      <td><strong>${formatMilKc(forecastTotalMil)}</strong></td>
     `;
     tbody.appendChild(tr);
   }
@@ -434,8 +438,12 @@ function shuffleDummy() {
     app.slaFulfillment = Math.max(97.2, Math.min(99.9, app.slaFulfillment + rand(-0.35, 0.35)));
     app.costsLastYearMil = Math.max(2, app.costsLastYearMil + rand(-4, 4));
     app.budgetCurrentYearMil = Math.max(2, app.budgetCurrentYearMil + rand(-3, 3));
-    app.extraBudgetMil = Math.max(-1, app.extraBudgetMil + rand(-1.5, 3.0));
-    app.forecastTotalMil = Math.max(2, app.forecastTotalMil + rand(-3, 3));
+    app.deltaFromProjectsMil = round1(
+      Math.max(-4, Math.min(6, app.deltaFromProjectsMil + rand(-1.2, 1.4)))
+    );
+    app.otherChangesSavingsMil = round1(
+      Math.max(-4, Math.min(6, app.otherChangesSavingsMil + rand(-1.2, 1.4)))
+    );
   }
 
   const stageTexts = [
