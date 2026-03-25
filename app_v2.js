@@ -50,11 +50,12 @@ const domains = [
       projects: [
         {
           name: "Projekt 1",
+          releasePlan: "Standard",
           stages: {
             finalization: "Probíhá",
-            intDeployment: "Čeká na INT",
-            accDeployment: "Není zahájeno",
-            testing: "Není zahájeno",
+            intDeployment: "Delayed",
+            accDeployment: "Done",
+            testingPct: 44,
             readiness: "Není zahájeno",
             incidents: "0 incidentů",
           },
@@ -62,11 +63,12 @@ const domains = [
         },
         {
           name: "Projekt 2",
+          releasePlan: "Individual",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Probíhá",
-            testing: "Čeká na testování",
+            intDeployment: "Done",
+            accDeployment: "Delayed",
+            testingPct: 78,
             readiness: "Není zahájeno",
             incidents: "1 incident",
           },
@@ -74,11 +76,12 @@ const domains = [
         },
         {
           name: "Projekt 3",
+          releasePlan: "Standard",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Hotovo",
-            testing: "Probíhá",
+            intDeployment: "Done",
+            accDeployment: "Done",
+            testingPct: 62,
             readiness: "Čeká na schválení",
             incidents: "2 incidenty",
           },
@@ -86,11 +89,12 @@ const domains = [
         },
         {
           name: "Projekt 4",
+          releasePlan: "Individual",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Hotovo",
-            testing: "Hotovo",
+            intDeployment: "Done",
+            accDeployment: "Done",
+            testingPct: 38,
             readiness: "Riziko",
             incidents: "4 incidenty",
           },
@@ -98,11 +102,12 @@ const domains = [
         },
         {
           name: "Projekt 5",
+          releasePlan: "Standard",
           stages: {
             finalization: "Probíhá",
-            intDeployment: "Čeká na INT",
-            accDeployment: "Není zahájeno",
-            testing: "Není zahájeno",
+            intDeployment: "Delayed",
+            accDeployment: "Delayed",
+            testingPct: 55,
             readiness: "Není zahájeno",
             incidents: "0 incidentů",
           },
@@ -162,11 +167,12 @@ const domains = [
       projects: [
         {
           name: "Projekt 1",
+          releasePlan: "Standard",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Čeká",
-            testing: "Není zahájeno",
+            intDeployment: "Done",
+            accDeployment: "Delayed",
+            testingPct: 72,
             readiness: "Není zahájeno",
             incidents: "0 incidentů",
           },
@@ -174,11 +180,12 @@ const domains = [
         },
         {
           name: "Projekt 2",
+          releasePlan: "Individual",
           stages: {
             finalization: "Probíhá",
-            intDeployment: "Probíhá",
-            accDeployment: "Čeká",
-            testing: "Není zahájeno",
+            intDeployment: "Delayed",
+            accDeployment: "Done",
+            testingPct: 41,
             readiness: "Není zahájeno",
             incidents: "1 incident",
           },
@@ -186,11 +193,12 @@ const domains = [
         },
         {
           name: "Projekt 3",
+          releasePlan: "Standard",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Hotovo",
-            testing: "Probíhá",
+            intDeployment: "Done",
+            accDeployment: "Done",
+            testingPct: 88,
             readiness: "Čeká na schválení",
             incidents: "3 incidenty",
           },
@@ -198,11 +206,12 @@ const domains = [
         },
         {
           name: "Projekt 4",
+          releasePlan: "Standard",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Hotovo",
-            testing: "Hotovo",
+            intDeployment: "Done",
+            accDeployment: "Done",
+            testingPct: 50,
             readiness: "Riziko",
             incidents: "5 incidentů",
           },
@@ -210,11 +219,12 @@ const domains = [
         },
         {
           name: "Projekt 5",
+          releasePlan: "Individual",
           stages: {
             finalization: "Probíhá",
-            intDeployment: "Čeká na INT",
-            accDeployment: "Není zahájeno",
-            testing: "Není zahájeno",
+            intDeployment: "Delayed",
+            accDeployment: "Delayed",
+            testingPct: 33,
             readiness: "Není zahájeno",
             incidents: "0 incidentů",
           },
@@ -274,11 +284,12 @@ const domains = [
       projects: [
         {
           name: "Projekt 1",
+          releasePlan: "Standard",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Probíhá",
-            testing: "Čeká na testování",
+            intDeployment: "Done",
+            accDeployment: "Done",
+            testingPct: 91,
             readiness: "Není zahájeno",
             incidents: "0 incidentů",
           },
@@ -286,11 +297,12 @@ const domains = [
         },
         {
           name: "Projekt 2",
+          releasePlan: "Standard",
           stages: {
             finalization: "Probíhá",
-            intDeployment: "Probíhá",
-            accDeployment: "Čeká",
-            testing: "Není zahájeno",
+            intDeployment: "Delayed",
+            accDeployment: "Done",
+            testingPct: 47,
             readiness: "Není zahájeno",
             incidents: "2 incidenty",
           },
@@ -298,11 +310,12 @@ const domains = [
         },
         {
           name: "Projekt 3",
+          releasePlan: "Individual",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Hotovo",
-            testing: "Probíhá",
+            intDeployment: "Done",
+            accDeployment: "Delayed",
+            testingPct: 65,
             readiness: "Čeká na schválení",
             incidents: "1 incident",
           },
@@ -310,11 +323,12 @@ const domains = [
         },
         {
           name: "Projekt 4",
+          releasePlan: "Standard",
           stages: {
             finalization: "Hotovo",
-            intDeployment: "Hotovo",
-            accDeployment: "Hotovo",
-            testing: "Hotovo",
+            intDeployment: "Done",
+            accDeployment: "Done",
+            testingPct: 22,
             readiness: "Riziko",
             incidents: "4 incidenty",
           },
@@ -322,11 +336,12 @@ const domains = [
         },
         {
           name: "Projekt 5",
+          releasePlan: "Individual",
           stages: {
             finalization: "Probíhá",
-            intDeployment: "Čeká na INT",
-            accDeployment: "Není zahájeno",
-            testing: "Není zahájeno",
+            intDeployment: "Delayed",
+            accDeployment: "Delayed",
+            testingPct: 58,
             readiness: "Není zahájeno",
             incidents: "0 incidentů",
           },
@@ -380,6 +395,22 @@ function toneFromStageText(stageText) {
   return "pill--bad";
 }
 
+function toneFromReleasePlan(plan) {
+  return plan === "Individual" ? "pill--bad" : "pill--ok";
+}
+
+function toneFromDoneDelayed(status) {
+  return status === "Done" ? "pill--ok" : "pill--bad";
+}
+
+function toneFromTestingQgPct(pct) {
+  return pct < 50 ? "pill--bad" : "pill--ok";
+}
+
+function formatTestingQgPct(pct) {
+  return `${new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 0 }).format(pct)} %`;
+}
+
 function renderPill(text, toneClass) {
   return `<span class="pill ${toneClass}">${text}</span>`;
 }
@@ -414,14 +445,17 @@ function renderProjects(tbody, projects) {
   for (const p of projects) {
     const s = p.stages;
     const incPill = renderPill(s.incidents, toneFromIncidents(p.stageIncidents));
+    const releasePlan = p.releasePlan === "Individual" ? "Individual" : "Standard";
+    const testingPct = typeof s.testingPct === "number" ? s.testingPct : 0;
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${p.name}</td>
+      <td>${renderPill(releasePlan, toneFromReleasePlan(releasePlan))}</td>
       <td>${renderPill(s.finalization, toneFromStageText(s.finalization))}</td>
-      <td>${renderPill(s.intDeployment, toneFromStageText(s.intDeployment))}</td>
-      <td>${renderPill(s.accDeployment, toneFromStageText(s.accDeployment))}</td>
-      <td>${renderPill(s.testing, toneFromStageText(s.testing))}</td>
+      <td>${renderPill(s.intDeployment, toneFromDoneDelayed(s.intDeployment))}</td>
+      <td>${renderPill(s.accDeployment, toneFromDoneDelayed(s.accDeployment))}</td>
+      <td>${renderPill(formatTestingQgPct(testingPct), toneFromTestingQgPct(testingPct))}</td>
       <td>${renderPill(s.readiness, toneFromStageText(s.readiness))}</td>
       <td>${incPill}</td>
     `;
@@ -446,29 +480,16 @@ function shuffleDummy() {
     );
   }
 
-  const stageTexts = [
-    "Není zahájeno",
-    "Čeká",
-    "Čeká na INT",
-    "Hotovo",
-    "Probíhá",
-    "Čeká na schválení",
-    "Riziko",
-    "Čeká na testování",
-  ];
+  const finalizationTexts = ["Hotovo", "Probíhá", "Čeká na schválení"];
+  const readinessTexts = ["Není zahájeno", "Čeká na schválení", "Riziko", "Hotovo"];
 
   for (const proj of domain.create.projects) {
-    const keys = [
-      "finalization",
-      "intDeployment",
-      "accDeployment",
-      "testing",
-      "readiness",
-    ];
-    for (const k of keys) {
-      const i = Math.floor(Math.random() * stageTexts.length);
-      proj.stages[k] = stageTexts[i];
-    }
+    proj.releasePlan = Math.random() < 0.72 ? "Standard" : "Individual";
+    proj.stages.finalization = finalizationTexts[Math.floor(Math.random() * finalizationTexts.length)];
+    proj.stages.intDeployment = Math.random() < 0.62 ? "Done" : "Delayed";
+    proj.stages.accDeployment = Math.random() < 0.58 ? "Done" : "Delayed";
+    proj.stages.testingPct = Math.round(rand(10, 100));
+    proj.stages.readiness = readinessTexts[Math.floor(Math.random() * readinessTexts.length)];
 
     proj.stageIncidents = Math.floor(rand(0, 6));
     proj.stages.incidents =
