@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard klíčových IT informací</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" aria-label="Navigace">
+        <div class="sidebar__brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="sidebar__brandText">
+            <div class="sidebar__title">IT Dashboard</div>
+            <div class="sidebar__subtitle">Vizualizační prototyp</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav__item is-active" type="button">Přehled</button>
+          <button class="nav__item" type="button">Incidenty</button>
+          <button class="nav__item" type="button">Změny</button>
+          <button class="nav__item" type="button">SLA</button>
+          <button class="nav__item" type="button">Kapacita</button>
+        </nav>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <div class="topbar__label">Obchodní doména / útvar</div>
+            <div class="field">
+              <select id="domainSelect" class="select" aria-label="Volba domény">
+                <!-- populated by app.js -->
+              </select>
+            </div>
+          </div>
+
+          <div class="topbar__right">
+            <div class="range">
+              <button class="range__btn is-active" type="button" data-range="7d">
+                Posledních 7 dní
+              </button>
+              <button class="range__btn" type="button" data-range="30d">30 dní</button>
+              <button class="range__btn" type="button" data-range="90d">90 dní</button>
+            </div>
+
+            <div class="meta">
+              <div class="meta__row">
+                <span class="meta__k">Aktualizace:</span>
+                <span class="meta__v" id="lastRefresh">—</span>
+              </div>
+              <div class="meta__row">
+                <span class="meta__k">Data:</span>
+                <span class="meta__v meta__v--muted">dummy</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="content">
+          <section class="grid grid--kpis" aria-label="KPI">
+            <article class="card kpi" data-kpi="availability">
+              <div class="kpi__top">
+                <div class="kpi__icon kpi__icon--ok" aria-hidden="true"></div>
+                <div class="kpi__label">Dostupnost</div>
+                <div class="kpi__delta" id="availabilityDelta"></div>
+              </div>
+              <div class="kpi__value" id="availabilityValue">—</div>
+              <div class="kpi__hint">SLA/Monitoring</div>
+            </article>
+
+            <article class="card kpi" data-kpi="incidents">
+              <div class="kpi__top">
+                <div class="kpi__icon kpi__icon--warn" aria-hidden="true"></div>
+                <div class="kpi__label">Incidenty</div>
+                <div class="kpi__delta" id="incidentsDelta"></div>
+              </div>
+              <div class="kpi__value" id="incidentsValue">—</div>
+              <div class="kpi__hint">počet (vybrané období)</div>
+            </article>
+
+            <article class="card kpi" data-kpi="changeSuccess">
+              <div class="kpi__top">
+                <div class="kpi__icon kpi__icon--info" aria-hidden="true"></div>
+                <div class="kpi__label">Úspěšnost změn</div>
+                <div class="kpi__delta" id="changeSuccessDelta"></div>
+              </div>
+              <div class="kpi__value" id="changeSuccessValue">—</div>
+              <div class="kpi__hint">Change success rate</div>
+            </article>
+
+            <article class="card kpi" data-kpi="mttr">
+              <div class="kpi__top">
+                <div class="kpi__icon kpi__icon--neutral" aria-hidden="true"></div>
+                <div class="kpi__label">MTTR</div>
+                <div class="kpi__delta" id="mttrDelta"></div>
+              </div>
+              <div class="kpi__value" id="mttrValue">—</div>
+              <div class="kpi__hint">minutes (median)</div>
+            </article>
+
+            <article class="card kpi" data-kpi="cpu">
+              <div class="kpi__top">
+                <div class="kpi__icon kpi__icon--neutral" aria-hidden="true"></div>
+                <div class="kpi__label">CPU využití</div>
+                <div class="kpi__delta" id="cpuDelta"></div>
+              </div>
+              <div class="kpi__value" id="cpuValue">—</div>
+              <div class="kpi__hint">průměr</div>
+            </article>
+
+            <article class="card kpi" data-kpi="backlog">
+              <div class="kpi__top">
+                <div class="kpi__icon kpi__icon--warn" aria-hidden="true"></div>
+                <div class="kpi__label">Backlog</div>
+                <div class="kpi__delta" id="backlogDelta"></div>
+              </div>
+              <div class="kpi__value" id="backlogValue">—</div>
+              <div class="kpi__hint">otevřené tikety</div>
+            </article>
+          </section>
+
+          <section class="grid grid--split" aria-label="Stav a incidenty">
+            <div class="card card--stretch">
+              <div class="card__header">
+                <div>
+                  <div class="card__title">Stav služeb</div>
+                  <div class="card__subtitle">Distribuce dostupnosti (dummy)</div>
+                </div>
+                <div class="legend" aria-hidden="true">
+                  <span class="legend__item legend__item--ok">OK</span>
+                  <span class="legend__item legend__item--warn">Upozornění</span>
+                  <span class="legend__item legend__item--bad">Neprovozní</span>
+                </div>
+              </div>
+
+              <div class="status">
+                <div class="donut" id="servicesDonut" aria-label="Donut graf stavů"></div>
+
+                <div class="statusList" id="statusList">
+                  <!-- populated by app.js -->
+                </div>
+              </div>
+            </div>
+
+            <div class="card card--stretch">
+              <div class="card__header">
+                <div>
+                  <div class="card__title">Poslední incidenty</div>
+                  <div class="card__subtitle">Ukázková tabulka (dummy)</div>
+                </div>
+              </div>
+
+              <div class="tableWrap" role="region" aria-label="Tabulka incidentů">
+                <table class="table" id="incidentsTable">
+                  <thead>
+                    <tr>
+                      <th>Datum</th>
+                      <th>Kategorie</th>
+                      <th>Stav</th>
+                      <th>Služba</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- populated by app.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid grid--rows" aria-label="Trendy a SLA">
+            <div class="card">
+              <div class="card__header">
+                <div>
+                  <div class="card__title">Trend dostupnosti</div>
+                  <div class="card__subtitle">Mini-graf (SVG) + popisky (dummy)</div>
+                </div>
+                <div class="muted" id="trendMeta">—</div>
+              </div>
+
+              <div class="chart">
+                <div class="chart__main">
+                  <svg id="availabilitySpark" class="spark" viewBox="0 0 300 70" preserveAspectRatio="none">
+                    <path class="spark__fill" d="" />
+                    <path class="spark__line" d="" />
+                  </svg>
+                  <div class="spark__labels">
+                    <span>př.: -14d</span>
+                    <span>př.: dnes</span>
+                  </div>
+                </div>
+                <div class="chart__side">
+                  <div class="metricRow">
+                    <div class="metricRow__k">Průměr</div>
+                    <div class="metricRow__v" id="trendAvg">—</div>
+                  </div>
+                  <div class="metricRow">
+                    <div class="metricRow__k">Nejlepší den</div>
+                    <div class="metricRow__v" id="trendBest">—</div>
+                  </div>
+                  <div class="metricRow">
+                    <div class="metricRow__k">Nejhorší den</div>
+                    <div class="metricRow__v" id="trendWorst">—</div>
+                  </div>
+                  <div class="metricRow metricRow--muted">
+                    <div class="metricRow__k">Poznámka</div>
+                    <div class="metricRow__v">čísla jsou dummy</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card__header">
+                <div>
+                  <div class="card__title">SLA & provozní zdraví</div>
+                  <div class="card__subtitle">Progress bary (dummy) + limity</div>
+                </div>
+              </div>
+
+              <div class="slaGrid">
+                <div class="slaItem">
+                  <div class="slaItem__top">
+                    <div class="slaItem__k">SLA dostupnost</div>
+                    <div class="slaItem__v" id="slaAvailabilityValue">—</div>
+                  </div>
+                  <div class="bar" aria-label="SLA dostupnost">
+                    <div class="bar__fill" id="slaAvailabilityFill"></div>
+                  </div>
+                  <div class="slaItem__foot muted">Cíl: <span id="slaAvailabilityTarget">99.5%</span></div>
+                </div>
+
+                <div class="slaItem">
+                  <div class="slaItem__top">
+                    <div class="slaItem__k">Monitoring coverage</div>
+                    <div class="slaItem__v" id="slaMonitoringValue">—</div>
+                  </div>
+                  <div class="bar" aria-label="Monitoring coverage">
+                    <div class="bar__fill" id="slaMonitoringFill"></div>
+                  </div>
+                  <div class="slaItem__foot muted">Cíl: <span id="slaMonitoringTarget">98%</span></div>
+                </div>
+
+                <div class="slaItem slaItem--wide">
+                  <div class="slaItem__top">
+                    <div class="slaItem__k">Kapacita (využití)</div>
+                    <div class="slaItem__v" id="capacityValue">—</div>
+                  </div>
+                  <div class="bar" aria-label="Kapacita (využití)">
+                    <div class="bar__fill bar__fill--capacity" id="capacityFill"></div>
+                  </div>
+                  <div class="slaItem__foot muted">
+                    Varování při &gt; <span id="capacityWarn">80%</span>, kritické &gt; <span id="capacityCritical">92%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card footerCard" aria-label="Závěr">
+            <div class="footerCard__left">
+              <div class="footerCard__title">Jak to používat v diskusi</div>
+              <div class="footerCard__text">
+                Tohle je layout prototyp. Uživatelé můžou komentovat strukturu (grid, hierarchie, tabulky, grafy) bez řešení zdrojů dat.
+              </div>
+            </div>
+            <div class="footerCard__right">
+              <button class="btn btn--secondary" type="button" id="shuffleBtn">Náhodně změnit dummy</button>
+              <button class="btn" type="button" id="toggleThemeBtn">Přepnout téma</button>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
