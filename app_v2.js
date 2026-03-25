@@ -384,6 +384,10 @@ function renderApps(tbody, apps) {
   tbody.innerHTML = "";
   for (const app of apps) {
     const slaPill = renderPill(formatPercent(app.slaFulfillment, 1), toneFromSla(app.slaFulfillment));
+    const changesVsPlanMil = app.extraBudgetMil;
+    // Derived dummy breakdown for the prototype visualization.
+    const deltaFromProjectsMil = changesVsPlanMil * 0.65;
+    const otherChangesSavingsMil = changesVsPlanMil - deltaFromProjectsMil;
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -391,7 +395,9 @@ function renderApps(tbody, apps) {
       <td>${slaPill}</td>
       <td>${formatMilKc(app.costsLastYearMil)}</td>
       <td>${formatMilKc(app.budgetCurrentYearMil)}</td>
-      <td>${formatMilKc(app.extraBudgetMil)}</td>
+      <td>${formatMilKc(changesVsPlanMil)}</td>
+      <td>${formatMilKc(deltaFromProjectsMil)}</td>
+      <td>${formatMilKc(otherChangesSavingsMil)}</td>
       <td><strong>${formatMilKc(app.forecastTotalMil)}</strong></td>
     `;
     tbody.appendChild(tr);
