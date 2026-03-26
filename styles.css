@@ -497,6 +497,23 @@ body {
   z-index: 1;
 }
 
+.table--run thead th {
+  position: static;
+}
+
+.table__letters th {
+  background: rgba(37, 99, 235, 0.14);
+  color: var(--text);
+  font-weight: 820;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.table--run th:nth-child(9),
+.table--run td:nth-child(9) {
+  border-left: 1px solid var(--border);
+}
+
 .chart {
   display: flex;
   gap: 14px;
