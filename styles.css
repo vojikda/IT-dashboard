@@ -514,6 +514,7 @@ body {
 .table--run th:nth-child(9),
 .table--run td:nth-child(9) {
   border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .chart {
