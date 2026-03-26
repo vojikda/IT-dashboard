@@ -423,6 +423,7 @@ function renderApps(tbody, apps) {
     const otherChangesSavingsMil = round1(app.otherChangesSavingsMil);
     const changesVsPlanMil = round1(deltaFromProjectsMil + otherChangesSavingsMil);
     const forecastTotalMil = round1(app.budgetCurrentYearMil + changesVsPlanMil);
+    const rofoNextYearMil = round1(forecastTotalMil * 1.03);
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -434,6 +435,7 @@ function renderApps(tbody, apps) {
       <td>${formatMilKc(deltaFromProjectsMil)}</td>
       <td>${formatMilKc(otherChangesSavingsMil)}</td>
       <td><strong>${formatMilKc(forecastTotalMil)}</strong></td>
+      <td><strong>${formatMilKc(rofoNextYearMil)}</strong></td>
     `;
     tbody.appendChild(tr);
   }
