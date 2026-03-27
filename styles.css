@@ -1,16 +1,17 @@
 :root {
-  --bg: #f6f8fb;
+  --bg: #f4f7fb;
   --panel: #ffffff;
-  --text: #0f172a;
-  --muted: #5b6b86;
-  --border: rgba(15, 23, 42, 0.12);
-  --shadow: 0 8px 28px rgba(2, 6, 23, 0.08);
+  --text: #0a2f6b;
+  --muted: #4c6288;
+  --border: rgba(10, 47, 107, 0.16);
+  --shadow: 0 8px 26px rgba(10, 47, 107, 0.09);
 
-  --brand: #2563eb;
-  --brand-2: #60a5fa;
+  --brand: #0a3f8a;
+  --brand-2: #1d5fb8;
+  --accent: #f5c400;
 
   --ok: #16a34a;
-  --warn: #f59e0b;
+  --warn: #d98e00;
   --bad: #ef4444;
   --info: #0ea5e9;
 
@@ -19,15 +20,16 @@
 }
 
 .theme-dark {
-  --bg: #0b1220;
-  --panel: #0f1b31;
-  --text: #e5e7eb;
-  --muted: #8aa0bf;
+  --bg: #08172f;
+  --panel: #0f2347;
+  --text: #edf2ff;
+  --muted: #a8bbd8;
   --border: rgba(229, 231, 235, 0.12);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
-  --brand: #60a5fa;
-  --brand-2: #93c5fd;
+  --brand: #6ea8ff;
+  --brand-2: #9cc3ff;
+  --accent: #ffd84d;
 }
 
 * {
@@ -41,8 +43,7 @@ body {
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
-    "Segoe UI Emoji";
+  font-family: "Segoe UI", "Helvetica Neue", Arial, Helvetica, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
@@ -128,6 +129,7 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border-top: 4px solid var(--brand);
 }
 
 .topbar__label {
@@ -183,8 +185,9 @@ body {
 }
 
 .range__btn.is-active {
-  background: rgba(37, 99, 235, 0.12);
-  border-color: rgba(37, 99, 235, 0.28);
+  background: rgba(10, 63, 138, 0.14);
+  border-color: rgba(10, 63, 138, 0.3);
+  color: var(--brand);
 }
 
 .meta {
@@ -240,7 +243,7 @@ body {
 
 .sectionDivider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  background: linear-gradient(90deg, transparent, rgba(10, 63, 138, 0.45), rgba(245, 196, 0, 0.55), transparent);
 }
 
 .card {
@@ -248,6 +251,7 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border-top: 3px solid rgba(10, 63, 138, 0.16);
   padding: 14px 14px;
 }
 
@@ -266,6 +270,7 @@ body {
 .card__title {
   font-weight: 780;
   letter-spacing: 0.1px;
+  color: var(--brand);
 }
 
 .card__subtitle {
@@ -378,7 +383,7 @@ body {
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: rgba(2, 6, 23, 0.02);
+  background: rgba(10, 63, 138, 0.04);
 }
 
 .legend__item--ok {
@@ -493,8 +498,10 @@ body {
 .table thead th {
   position: sticky;
   top: 0;
-  background: var(--panel);
+  background: rgba(10, 63, 138, 0.08);
   z-index: 1;
+  color: var(--brand);
+  font-weight: 760;
 }
 
 .table--run thead th {
@@ -502,7 +509,7 @@ body {
 }
 
 .table__letters th {
-  background: rgba(37, 99, 235, 0.14);
+  background: linear-gradient(90deg, rgba(10, 63, 138, 0.16), rgba(245, 196, 0, 0.24));
   color: var(--text);
   font-weight: 820;
   font-size: 12px;
@@ -669,18 +676,18 @@ body {
 .btn {
   appearance: none;
   border-radius: 12px;
-  border: 1px solid rgba(37, 99, 235, 0.3);
-  background: rgba(37, 99, 235, 0.12);
-  color: var(--text);
+  border: 1px solid rgba(10, 63, 138, 0.35);
+  background: var(--brand);
+  color: #ffffff;
   padding: 10px 12px;
   font-weight: 800;
   cursor: pointer;
 }
 
 .btn--secondary {
-  border-color: var(--border);
-  background: transparent;
-  color: var(--text);
+  border-color: rgba(10, 63, 138, 0.35);
+  background: rgba(245, 196, 0, 0.18);
+  color: var(--brand);
 }
 
 @media (max-width: 1200px) {
